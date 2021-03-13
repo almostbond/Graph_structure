@@ -6,14 +6,26 @@ using namespace std;
 class Graph {
 private:
 
+	struct node {
 
-	static const int array_size = 10;
+		int vertex_index;
+		int sum_of_path;
+		struct vertex* previous;
+
+
+	};
+
+	static const int array_size = 5;
 	
 	vertex* array_content[array_size];
-	
+	node* processing_list[array_size];
 	int index;
 
-	void dijkstra_helper(int ipos, int fpos);
+	int dijkstra_smallest(int ipos);
+	void dijkstra_list_init();
+	void dijkstra_add_weight(edge* edge, int pos);
+	
+	
 
 
 public:
@@ -25,8 +37,9 @@ public:
 	void add_edge(int weight, int ipos, int fpos);
 	void print_adjacent(int source);
 
-	void dijkstra(int ipos, int fpos);
+	void dijkstra(int ipos);
 
+	bool touch_check();
 
 };
 
@@ -38,4 +51,6 @@ public:
 	Graph_test();
 	void create_vertex_test();
 	void create_edge_test();
+	void dijkstra_test();
+
 };
